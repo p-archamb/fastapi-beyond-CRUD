@@ -20,12 +20,12 @@ jobs:
         run: |
           echo "module.exports = {
             extends: ['@commitlint/config-conventional']
-          };" > commitlint.config.js
+          };" > commitlint.config.cjs
 
       - name: Conventional Commits Check
         uses: wagoid/commitlint-github-action@v5
         with:
-          configFile: commitlint.config.js
+          configFile: commitlint.config.cjs
           failOnWarnings: false
           commitDepth: 1
 
