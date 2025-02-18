@@ -12,41 +12,24 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
       - name: Install dependencies
         run: |
-          npm install --save-dev @commitlint/config-conventional @commitlint/cli
+          npm install @commitlint/cli @commitlint/config-conventional --save-dev
 
       - name: Create commitlint config
         run: |
-          echo "module.exports = {
-            extends: ['@commitlint/config-conventional']
-          };" > commitlint.config.cjs
+          echo "{
+            \"extends\": [\"@commitlint/config-conventional\"]
+          }" > .commitlintrc.json
 
       - name: Conventional Commits Check
         uses: wagoid/commitlint-github-action@v5
         with:
-          configFile: commitlint.config.cjs
+          configFile: .commitlintrc.json
           failOnWarnings: false
           commitDepth: 1
-
-      - name: Send Email Notification on Failure
-        if: failure()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.ethereal.email
-          server_port: 587
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "Conventional Commits Check Failed"
-          to: ${{ secrets.NOTIFICATION_EMAIL }}
-          body: |
-            PR #${{ github.event.pull_request.number }} failed due to non-conventional commit messages.
-            Please ensure your commits follow the Conventional Commits specification:
-            <type>[optional scope]: <description>
-          from: CI System
-
-      - name: Close PR on Failure
-        if: failure()
-        uses: peter-evans/close-pull@v3
-        with:
-          comment: "PR closed due to non-conventional commit messages. Please fix your commits to follow conventional commits specification and reopen."
