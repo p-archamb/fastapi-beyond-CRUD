@@ -44,5 +44,3 @@ jobs:
         uses: peter-evans/close-pull@v3
         with:
           comment: "PR closed due to non-conventional commit messages. Please fix your commits to follow conventional commits specification and reopen."
-
----
