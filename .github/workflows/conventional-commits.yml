@@ -11,6 +11,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      
+      - name: Install dependencies
+        run: |
+          npm install --save-dev @commitlint/config-conventional @commitlint/cli
           
       - name: Conventional Commits Check
         uses: wagoid/commitlint-github-action@v5
@@ -32,10 +36,6 @@ jobs:
             Please ensure your commits follow the Conventional Commits specification:
             <type>[optional scope]: <description>
             
-            Examples:
-            feat: add user authentication
-            fix(api): handle null response
-            docs: update README
           to: ${{ github.event.pull_request.user.email }}
           from: CI System
           
