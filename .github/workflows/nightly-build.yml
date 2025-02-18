@@ -78,6 +78,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
+      - name: Convert Repository Name to Lowercase
+        id: repo-name
+        run: |
+          echo "REPO_LOWER=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Build and Push Container
         if: success()
         uses: docker/build-push-action@v4
@@ -85,8 +90,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${GITHUB_REPOSITORY,,}:nightly
-            ghcr.io/${GITHUB_REPOSITORY,,}:${{ github.sha }}
+            ghcr.io/${{ env.REPO_LOWER }}:nightly
+            ghcr.io/${{ env.REPO_LOWER }}:${{ github.sha }}
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
