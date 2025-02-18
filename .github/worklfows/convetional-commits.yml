@@ -1,0 +1,48 @@
+name: Conventional Commits Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  verify-conventional-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Conventional Commits Check
+        uses: wagoid/commitlint-github-action@v5
+        with:
+          configFile: .commitlintrc.yml
+          
+      - name: Send Email Notification on Failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.ethereal.email
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "Conventional Commits Check Failed"
+          body: |
+            PR #${{ github.event.pull_request.number }} failed due to non-conventional commit messages.
+            
+            Please ensure your commits follow the Conventional Commits specification:
+            <type>[optional scope]: <description>
+            
+            Examples:
+            feat: add user authentication
+            fix(api): handle null response
+            docs: update README
+          to: ${{ github.event.pull_request.user.email }}
+          from: CI System
+          
+      - name: Close PR on Failure
+        if: failure()
+        uses: peter-evans/close-pull@v3
+        with:
+          comment: "PR closed due to non-conventional commit messages. Please fix your commits to follow conventional commits specification and reopen."
+
+---
