@@ -2,7 +2,7 @@ name: Nightly Build
 
 on:
   schedule:
-    - cron: '55 16 * * *'  # 8:30 AM PST
+    - cron: '15 17 * * *'  # 8:30 AM PST
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -106,7 +106,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: "Nightly Build Failed"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
-          from: "GitHub Actions <${{ secrets.MAIL_USERNAME }}>"
           body: |
             The nightly build failed.
             
