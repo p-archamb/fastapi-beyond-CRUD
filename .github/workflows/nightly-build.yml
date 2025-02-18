@@ -2,7 +2,7 @@ name: Nightly Build
 
 on:
   schedule:
-    - cron: '15 17 * * *'  # 8:30 AM PST
+    - cron: '0 8 * * *'  # Midnight PST
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
           POSTGRES_PASSWORD: testpass
           POSTGRES_DB: bookly
         ports:
-          - 5432:5432
+          - 5433:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s

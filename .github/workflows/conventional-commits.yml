@@ -12,24 +12,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: wagoid/commitlint-github-action@v5
-        with:
-          configFile: .commitlintrc.yml
-          helpURL: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
-          failOnWarnings: false
-          commitDepth: 1
-          firstParent: false
-          verbose: true
-      
       - name: Install dependencies
         run: |
           npm install --save-dev @commitlint/config-conventional @commitlint/cli
-          
+
+      - name: Create commitlint config
+        run: |
+          echo "module.exports = {
+            extends: ['@commitlint/config-conventional']
+          };" > commitlint.config.js
+
       - name: Conventional Commits Check
         uses: wagoid/commitlint-github-action@v5
         with:
-          configFile: .commitlintrc.yml
-          
+          configFile: commitlint.config.js
+          failOnWarnings: false
+          commitDepth: 1
+
       - name: Send Email Notification on Failure
         if: failure()
         uses: dawidd6/action-send-mail@v3
@@ -42,11 +41,10 @@ jobs:
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           body: |
             PR #${{ github.event.pull_request.number }} failed due to non-conventional commit messages.
-            
             Please ensure your commits follow the Conventional Commits specification:
             <type>[optional scope]: <description>
           from: CI System
-          
+
       - name: Close PR on Failure
         if: failure()
         uses: peter-evans/close-pull@v3
