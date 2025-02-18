@@ -12,9 +12,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install dependencies
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install commitlint
         run: |
-          npm install --save-dev @commitlint/config-conventional @commitlint/cli
+          npm install --save-dev @commitlint/cli@17.6.7 @commitlint/config-conventional@17.6.7
 
       - name: Conventional Commits Check
         uses: wagoid/commitlint-github-action@v5
