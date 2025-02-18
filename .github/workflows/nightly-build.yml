@@ -2,13 +2,12 @@ name: Nightly Build
 
 on:
   schedule:
-    - cron: '30 16 * * *'  # Run at midnight UTC
-  workflow_dispatch:  # Allow manual trigger
+    - cron: '55 16 * * *'  # 8:30 AM PST
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    
     services:
       postgres:
         image: postgres:15
@@ -86,8 +85,11 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:nightly
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/${GITHUB_REPOSITORY,,}:nightly
+            ghcr.io/${GITHUB_REPOSITORY,,}:${{ github.sha }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
           
       - name: Send Email Notification on Failure
         if: failure()
@@ -98,6 +100,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: "Nightly Build Failed"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
           body: |
             The nightly build failed.
             
@@ -106,5 +109,4 @@ jobs:
             
             Please check the GitHub Actions logs for more details:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: CI System
