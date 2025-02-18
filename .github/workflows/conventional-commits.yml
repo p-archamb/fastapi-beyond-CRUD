@@ -30,6 +30,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: "Conventional Commits Check Failed"
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
           body: |
             PR #${{ github.event.pull_request.number }} failed due to non-conventional commit messages.
             
