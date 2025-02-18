@@ -24,9 +24,27 @@ rules:
       - docs
       - style
       - refactor
-      - perf 
+      - perf
       - test
       - build
       - ci
       - chore
       - revert
+  type-case:
+    - 2
+    - always
+    - lower-case
+  type-empty:
+    - 2
+    - never
+  scope-case:
+    - 2
+    - always
+    - lower-case
+  subject-empty:
+    - 2
+    - never
+  subject-full-stop:
+    - 2
+    - never
+    - '.'

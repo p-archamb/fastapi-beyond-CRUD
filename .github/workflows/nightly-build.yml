@@ -106,6 +106,7 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: "Nightly Build Failed"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: "GitHub Actions <${{ secrets.MAIL_USERNAME }}>"
           body: |
             The nightly build failed.
             
