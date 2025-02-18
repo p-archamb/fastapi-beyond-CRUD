@@ -36,8 +36,6 @@ jobs:
             
             Please ensure your commits follow the Conventional Commits specification:
             <type>[optional scope]: <description>
-            
-          to: ${{ github.event.pull_request.user.email }}
           from: CI System
           
       - name: Close PR on Failure
