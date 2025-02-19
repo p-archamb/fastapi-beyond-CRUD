@@ -56,9 +56,9 @@ DOMAIN=localhost
 
 Add Repository Secrets:
 
-MAIL_USERNAME 
-MAIL_PASSWORD 
-NOTIFICATION_EMAIL 
+MAIL_USERNAME  
+MAIL_PASSWORD  
+NOTIFICATION_EMAIL  
 
 
 4. Run the Application:
