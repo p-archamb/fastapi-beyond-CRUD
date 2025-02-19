@@ -38,7 +38,7 @@ Original Features:
 `cd fastapi-beyond-crud`
 
 2. Create .env file:
-
+sefs
 `cp .env.example .env`
 
 3. Run the Application:
