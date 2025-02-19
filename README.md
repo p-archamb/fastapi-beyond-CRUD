@@ -19,7 +19,7 @@ Original Features:
 -Automated email notifications for CI/CD events  
 -Docker containerization  
 -GitHub Container Registry integration  
-
+#jaslij
 **Prerequisites**
 
 -Docker and Docker Compose  
