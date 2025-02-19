@@ -1,7 +1,9 @@
 **FastAPI Beyond CRUD**
+
 This repository extends the original FastAPI CRUD example with CI/CD features including conventional commits enforcement, nightly builds, and automated notifications.
 
 **Features**
+
 Original Features:
 
 Complete CRUD operations with FastAPI
@@ -27,11 +29,12 @@ Python 3.11+
 PostgreSQL
 Redis
 
-#Setup Instructions
+**Setup Instructions**
 
 1. Clone:
 
-`git clone https://github.com/p-archamb/fastapi-beyond-CRUD`
+`git clone https://github.com/p-archamb/fastapi-beyond-CRUD` 
+
 `cd fastapi-beyond-crud`
 
 2. Create .env file:
@@ -53,9 +56,9 @@ DOMAIN=localhost
 
 Add Repository Secrets:
 
-MAIL_USERNAME
-MAIL_PASSWORD
-NOTIFICATION_EMAIL
+MAIL_USERNAME 
+MAIL_PASSWORD 
+NOTIFICATION_EMAIL 
 
 
 4. Run the Application:
@@ -87,10 +90,14 @@ ReDoc: http://localhost:8000/api/v1/redoc
 **Making Contributions**
 
 Create a new branch
+
 Make changes
+
 Commit using conventional format:
-bashCopygit commit -m "type: description"
+
+git commit -m "type: description"
 
 Create Pull Request
+
 Wait for automated checks
 
