@@ -1,80 +1,96 @@
-# FastAPI Beyond CRUD 
+#FastAPI Beyond CRUD
+This repository extends the original FastAPI CRUD example with CI/CD features including conventional commits enforcement, nightly builds, and automated notifications.
 
-This is the source code for the [FastAPI Beyond CRUD](https://youtube.com/playlist?list=PLEt8Tae2spYnHy378vMlPH--87cfeh33P&si=rl-08ktaRjcm2aIQ) course. The course focuses on FastAPI development concepts that go beyond the basic CRUD operations.
+#Features
+Original Features:
 
-For more details, visit the project's [website](https://jod35.github.io/fastapi-beyond-crud-docs/site/).
+Complete CRUD operations with FastAPI
+SQLAlchemy integration with PostgreSQL
+Redis for task queuing and caching
+Celery for background tasks
+Email notifications using Ethereal Email
 
-## Table of Contents
+#Added CI/CD Features
 
-1. [Getting Started](#getting-started)
-2. [Prerequisites](#prerequisites)
-3. [Project Setup](#project-setup)
-4. [Running the Application](#running-the-application)
-5. [Running Tests](#running-tests)
-6. [Contributing](#contributing)
+Conventional Commits enforcement on PRs
+Nightly builds with container publishing
+Automated email notifications for CI/CD events
+Docker containerization
+GitHub Container Registry integration
 
-## Getting Started
-Follow the instructions below to set up and run your FastAPI project.
+#Prerequisites
 
-### Prerequisites
-Ensure you have the following installed:
+Docker and Docker Compose
+GitHub account with Actions enabled
+Ethereal Email account for notifications
+Python 3.11+
+PostgreSQL
+Redis
 
-- Python >= 3.10
-- PostgreSQL
-- Redis
+#Setup Instructions
 
-### Project Setup
-1. Clone the project repository:
-    ```bash
-    git clone https://github.com/jod35/fastapi-beyond-CRUD.git
-    ```
-   
-2. Navigate to the project directory:
-    ```bash
-    cd fastapi-beyond-CRUD/
-    ```
+1. Clone:
 
-3. Create and activate a virtual environment:
-    ```bash
-    python3 -m venv env
-    source env/bin/activate
-    ```
+git clone https://github.com/p-archamb/fastapi-beyond-CRUD
+cd fastapi-beyond-crud
 
-4. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+2. Create .env file:
+DATABASE_URL=postgresql+asyncpg://postgres:testpass@db:5432/bookly
+JWT_SECRET=your_jwt_secret_here
+JWT_ALGORITHM=HS256
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_URL=redis://redis:6379/0
+MAIL_USERNAME=your_ethereal_username
+MAIL_PASSWORD=your_ethereal_password
+MAIL_SERVER=smtp.ethereal.email
+MAIL_PORT=587
+MAIL_FROM=noreply@example.com
+MAIL_FROM_NAME=Bookly API
+DOMAIN=localhost
 
-5. Set up environment variables by copying the example configuration:
-    ```bash
-    cp .env.example .env
-    ```
+3. Configure GitHub Repository:
 
-6. Run database migrations to initialize the database schema:
-    ```bash
-    alembic upgrade head
-    ```
+Add Repository Secrets:
 
-7. Open a new terminal and ensure your virtual environment is active. Start the Celery worker (Linux/Unix shell):
-    ```bash
-    sh runworker.sh
-    ```
+MAIL_USERNAME
+MAIL_PASSWORD
+NOTIFICATION_EMAIL
 
-## Running the Application
-Start the application:
 
-```bash
-fastapi dev src/
-```
-Alternatively, you can run the application using Docker:
-```bash
-docker compose up -d
-```
-## Running Tests
-Run the tests using this command
-```bash
-pytest
-```
+4. Run the Application:
 
-## Contributing
-I welcome contributions to improve the documentation! You can contribute [here](https://github.com/jod35/fastapi-beyond-crud-docs).
+docker compose up
+
+#CI/CD Workflows
+Conventional Commits
+
+All commits must follow the format: type: description
+Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore
+PRs with non-compliant commits will be automatically closed
+Email notifications sent on failures
+
+Nightly Builds
+
+Runs daily at 0:00 AM Pacific Time
+Executes all tests
+Builds Docker container
+Pushes to GitHub Container Registry
+Sends notifications on failures
+
+#API Documentation
+
+Swagger UI: http://localhost:8000/api/v1/docs
+ReDoc: http://localhost:8000/api/v1/redoc
+
+
+#Making Contributions
+
+Create a new branch
+Make changes
+Commit using conventional format:
+bashCopygit commit -m "type: description"
+
+Create Pull Request
+Wait for automated checks
+
