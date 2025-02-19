@@ -6,19 +6,19 @@ This repository extends the original FastAPI CRUD example with CI/CD features in
 
 Original Features:
 
-Complete CRUD operations with FastAPI
-SQLAlchemy integration with PostgreSQL
-Redis for task queuing and caching
-Celery for background tasks
-Email notifications using Ethereal Email
+-Complete CRUD operations with FastAPI  
+-SQLAlchemy integration with PostgreSQL  
+-Redis for task queuing and caching  
+-Celery for background tasks  
+-Email notifications using Ethereal Email  
 
 **Added CI/CD Features**
 
-Conventional Commits enforcement on PRs
-Nightly builds with container publishing
-Automated email notifications for CI/CD events
-Docker containerization
-GitHub Container Registry integration
+-Conventional Commits enforcement on PRs  
+-Nightly builds with container publishing  
+-Automated email notifications for CI/CD events  
+-Docker containerization  
+-GitHub Container Registry integration  
 
 **Prerequisites**
 
