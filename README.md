@@ -90,9 +90,14 @@ ReDoc: http://localhost:8000/api/v1/redoc
 **Making Contributions**
 
 -Create a new branch
+
 -Make changes
+
 -Commit using conventional format:
+
 -git commit -m "type: description"
+
 -Create Pull Request
+
 -Wait for automated checks
 
