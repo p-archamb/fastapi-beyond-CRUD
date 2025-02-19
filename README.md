@@ -38,30 +38,9 @@ Original Features:
 `cd fastapi-beyond-crud`
 
 2. Create .env file:
-DATABASE_URL=postgresql+asyncpg://postgres:testpass@db:5432/bookly
-JWT_SECRET=your_jwt_secret_here
-JWT_ALGORITHM=HS256
-REDIS_HOST=redis
-REDIS_PORT=6379
-REDIS_URL=redis://redis:6379/0
-MAIL_USERNAME=your_ethereal_username
-MAIL_PASSWORD=your_ethereal_password
-MAIL_SERVER=smtp.ethereal.email
-MAIL_PORT=587
-MAIL_FROM=noreply@example.com
-MAIL_FROM_NAME=Bookly API
-DOMAIN=localhost
+`cp .env.example .env`
 
-3. Configure GitHub Repository:
-
-Add Repository Secrets:
-
-MAIL_USERNAME  
-MAIL_PASSWORD  
-NOTIFICATION_EMAIL  
-
-
-4. Run the Application:
+3. Run the Application:
 
 `docker compose up`
 

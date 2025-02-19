@@ -36,10 +36,10 @@ jobs:
         with:
           server_address: smtp.ethereal.email
           server_port: 587
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
+          username: ${{ env.MAIL_USERNAME }}
+          password: ${{ env.MAIL_PASSWORD }}
           subject: "Conventional Commits Check Failed"
-          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          to: ${{ env.NOTIFICATION_EMAIL }}
           body: |
             PR #${{ github.event.pull_request.number }} failed due to non-conventional commit messages.
             Please ensure your commits follow the Conventional Commits specification:

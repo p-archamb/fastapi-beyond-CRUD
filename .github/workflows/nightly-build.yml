@@ -56,8 +56,8 @@ jobs:
           REDIS_HOST: localhost
           REDIS_PORT: 6379
           REDIS_URL: redis://localhost:6379/0
-          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
-          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_USERNAME: ${{ env.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ env.MAIL_PASSWORD }}
           MAIL_SERVER: smtp.ethereal.email
           MAIL_PORT: 587
           MAIL_FROM: noreply@test.com
@@ -76,7 +76,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ env.GITHUB_TOKEN }}
           
       - name: Convert Repository Name to Lowercase
         id: repo-name
@@ -102,10 +102,10 @@ jobs:
         with:
           server_address: smtp.ethereal.email
           server_port: 587
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
+          username: ${{ env.MAIL_USERNAME }}
+          password: ${{ env.MAIL_PASSWORD }}
           subject: "Nightly Build Failed"
-          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          to: ${{ env.NOTIFICATION_EMAIL }}
           body: |
             The nightly build failed.
             
