@@ -1,7 +1,7 @@
-#FastAPI Beyond CRUD
+**FastAPI Beyond CRUD**
 This repository extends the original FastAPI CRUD example with CI/CD features including conventional commits enforcement, nightly builds, and automated notifications.
 
-#Features
+**Features**
 Original Features:
 
 Complete CRUD operations with FastAPI
@@ -10,7 +10,7 @@ Redis for task queuing and caching
 Celery for background tasks
 Email notifications using Ethereal Email
 
-#Added CI/CD Features
+**Added CI/CD Features**
 
 Conventional Commits enforcement on PRs
 Nightly builds with container publishing
@@ -18,7 +18,7 @@ Automated email notifications for CI/CD events
 Docker containerization
 GitHub Container Registry integration
 
-#Prerequisites
+**Prerequisites**
 
 Docker and Docker Compose
 GitHub account with Actions enabled
@@ -31,8 +31,8 @@ Redis
 
 1. Clone:
 
-git clone https://github.com/p-archamb/fastapi-beyond-CRUD
-cd fastapi-beyond-crud
+`git clone https://github.com/p-archamb/fastapi-beyond-CRUD`
+`cd fastapi-beyond-crud`
 
 2. Create .env file:
 DATABASE_URL=postgresql+asyncpg://postgres:testpass@db:5432/bookly
@@ -60,9 +60,9 @@ NOTIFICATION_EMAIL
 
 4. Run the Application:
 
-docker compose up
+`docker compose up`
 
-#CI/CD Workflows
+**CI/CD Workflows**
 Conventional Commits
 
 All commits must follow the format: type: description
@@ -78,13 +78,13 @@ Builds Docker container
 Pushes to GitHub Container Registry
 Sends notifications on failures
 
-#API Documentation
+**API Documentation**
 
 Swagger UI: http://localhost:8000/api/v1/docs
 ReDoc: http://localhost:8000/api/v1/redoc
 
 
-#Making Contributions
+**Making Contributions**
 
 Create a new branch
 Make changes
