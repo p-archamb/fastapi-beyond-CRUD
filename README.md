@@ -48,18 +48,18 @@ Original Features:
 **CI/CD Workflows**
 Conventional Commits
 
-All commits must follow the format: type: description
-Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore
-PRs with non-compliant commits will be automatically closed
+All commits must follow the format: type: description  
+Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore  
+PRs with non-compliant commits will be automatically closed  
 Email notifications sent on failures
 
 Nightly Builds
 
-Runs daily at 0:00 AM Pacific Time
-Executes all tests
-Builds Docker container
-Pushes to GitHub Container Registry
-Sends notifications on failures
+-Runs daily at 0:00 AM Pacific Time  
+-Executes all tests  
+-Builds Docker container  
+-Pushes to GitHub Container Registry  
+-Sends notifications on failures  
 
 **API Documentation**
 
